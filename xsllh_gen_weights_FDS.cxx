@@ -122,11 +122,11 @@ bool doesEventPassCut(XSEvent& xs_evt, A accum_level, int isel, bool truth_tree)
         return true;
 
     bool event_pass = false;
-    const std::vector<int> cut_level = {10, 10, 10, 9, 8, 8};
+    const std::vector<int> cut_level = {10, 10, 10, 9, 8, 8}; //hard coded - set this!
 
     for(unsigned int s = 0; s < cut_level.size(); ++s)
       {
-	if(accum_level[0][isel][s+1] > cut_level[s]) //s+1 to offset for 0th branch which is 1pi total
+	if(accum_level[0][isel][s+1] > cut_level[s]) //s+1 to offset for 0th branch which is 1pi total - this will need altering for most analysis to remove the +1
 	  {
 	    event_pass = true;
 	    xs_evt.sample = s; //Do the layer splitting in the tree converter rather than here
@@ -343,9 +343,9 @@ int main(int argc, char** argv)
 	  std::vector<XSEvent> vec_evts;
 	  vec_evts.reserve(nevents);
     
-	  const unsigned int nsamples = 6;
-	  const unsigned int nselections = 2;
-	  int accum_level[1][nselections][nsamples+1]; //Offset for total branch in the highland input tree
+	  const unsigned int nsamples = 6; //Hardcoded
+	  const unsigned int nselections = 2; //Hardcoded
+	  int accum_level[1][nselections][nsamples+1]; //Offset for total branch in the highland input tree - alter for most analyses
 
     
 	  int NRooVtx{0}, vtx_run{0}, vtx_subrun{0};
